@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change</title>
+    <style>
+        body {
+            background: snow
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <h3>Изменение данных</h3>
+    <!--  таблица по центру-->
+    <form th:method="POST" th:action="@{/update/{id}(id=${user.id})}" th:object="${user}">   <!-- форма заполнения замаплена на метод @PostMapping updateUser контроллера    -->
+        <table border="2" cellpadding="5">
+            <tr>
+                <td>
+                    <label for="name"><em><b>Имя</b></em></label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{name}" id="name"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="surname"><em><b>Фамилия</b></em> </label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{surname}" id="surname"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="age"><em><b>Возраст> </b></em></label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{age}" id="age"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email"><em><b>Электронный адрес</b></em></label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{email}" id="email"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="password"><em><b>Пароль </b></em></label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{password}" id="password"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="role"><em><b>Role </b></em></label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{role}" id="role"/>
+                </td>
+            </tr>
+            <br>
+
+        </table>
+        <br>
+        <input type="submit" value="Изменить"/>
+</div>
+</body>
+</html>

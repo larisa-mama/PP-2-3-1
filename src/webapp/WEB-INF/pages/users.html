@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:c="http://java.sun.com/xml/ns/javaee">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        body {
+            background: azure
+        }
+    </style>
+</head>
+<body>
+<div align="center">                               <!--  таблица по центру-->
+
+    <h1>Человеки</h1>
+
+    <!--     <form method="get" action="search">                кнопка поиска
+       <input type="text" name="keyword"/> &nbsp;
+      <input type="submit" th:value="Поиск"/>   -->
+    </form>
+    <tr>
+        &nbsp;
+    </tr>
+
+    <table border="2" cellpadding="5" bordercolor="grey">            <!-- рамки таблицы-->
+        <tr>
+            <th><em>Id</em></th>            <!-- курсив-->
+            <th><em>Имя</em></th>
+            <th><em>Фамилия</em></th>
+            <th><em>Возраст</em></th>
+            <th><em>Email</em></th>
+            <th><em>Password</em></th>
+            <th><em>Role</em></th>
+            <th><em>Действие</em></th>
+        </tr>
+        <tr th:each="user: ${users}">
+            <td th:utext="${user.getId()}"/>
+            <td th:utext="${user.getName()}"/>
+            <td th:utext="${user.getSurname()}"/>
+            <td th:utext="${user.getAge()}"/>
+            <td th:utext="${user.getEmail()}"/>
+            <td th:utext="${user.getPassword()}"/>
+            <td th:utext="${user.getRole()}"/>
+
+            <td>
+                <div align="center">
+                    <!-- добавила ссылку на редактирование-->
+                    <a th:href="@{/change/{id}(id=${user.id})}">
+                        <!--     метод контроллера GetMapping changeUser -->
+                        <input type="submit" value="Редактирование">
+                    </a>
+                    <br>
+                    <br>
+                    <form th:method="delete" th:action="@{/delete/{id}(id=${user.id})}">
+                        <input type="submit" value="Удалить"/>
+                    </form>  <!--  ссылка на удаление . метод контроллера @DeleteMapping-->
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<br/>
+<hr/>
+<div align="center">
+    <input type="button" value="Добавить" onclick="window.location.href='/newUser'"/>
+    <!-- кнопка для создания юзера, замаплена на метод makeUser-->
+</div>
+</body>
+</html>
